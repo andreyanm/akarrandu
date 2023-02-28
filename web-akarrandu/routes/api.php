@@ -25,8 +25,13 @@ Route::group(['middleware' => 'api', 'namespace' => 'App\Http\Controllers\API','
 });
 
 Route::group(['middleware' => 'jwt.auth'],function(){
-    //API PENJUALAN
+    //KECAMATAN/KELURAHAN
     Route::get('get_kecamatan', [APIKecamatanController::class, 'list']);
     Route::get('get_kelurahan', [APIKelurahanController::class, 'list']);
     Route::get('get_kelurahan/{id}', [APIkelurahanController::class, 'show']);
+
+    //WARGA
+    Route::get('get_warga', [APIWargaController::class, 'index']);
+    Route::post('warga', [APIWargaController::class, 'store']);
+    
 });
