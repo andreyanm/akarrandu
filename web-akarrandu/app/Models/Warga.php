@@ -2,10 +2,28 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
+/**
+ * Class Warga
+ * @package App\Models
+ * @version February 28, 2023, 9:34 pm UTC
+ *
+ * @property \App\Models\Kecamatan $kecamatan
+ * @property \App\Models\Kelurahan $kelurahan
+ * @property \App\Models\User $users
+ * @property string $nama
+ * @property string $nik
+ * @property string $alamat
+ * @property string $rw
+ * @property string $rt
+ * @property string $nohp
+ * @property integer $kecamatan_id
+ * @property integer $kelurahan_id
+ * @property integer $users_id
+ */
 class Warga extends Model
 {
     use SoftDeletes;
@@ -23,15 +41,15 @@ class Warga extends Model
 
 
     public $fillable = [
-        'nama_kecamatan',
+        'nama',
         'nik',
-        'nohp',
         'alamat',
+        'rw',
+        'rt',
+        'nohp',
         'kecamatan_id',
         'kelurahan_id',
-        'rt',
-        'rw',
-        'users_id',
+        'users_id'
     ];
 
     /**
@@ -42,14 +60,14 @@ class Warga extends Model
     protected $casts = [
         'id' => 'integer',
         'nama' => 'string',
-        'nik' => 'integer',
-        'nohp' => 'string',
+        'nik' => 'string',
         'alamat' => 'string',
+        'rw' => 'string',
+        'rt' => 'string',
+        'nohp' => 'string',
         'kecamatan_id' => 'integer',
         'kelurahan_id' => 'integer',
-        'rt' => 'string',
-        'rw' => 'string',
-        'users_id' => 'integer',
+        'users_id' => 'integer'
     ];
 
     /**
@@ -58,28 +76,38 @@ class Warga extends Model
      * @var array
      */
     public static $rules = [
-        'nama' => 'nullable|string|max:255',
+        'nama' => 'required|string|max:255',
+        'nik' => 'required|string|max:16',
+        'alamat' => 'required|string',
+        'rw' => 'required|string|max:255',
+        'rt' => 'required|string|max:255',
+        'nohp' => 'required|string|max:255',
+        'kecamatan_id' => 'required|integer',
+        'kelurahan_id' => 'required|integer',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
-        'deleted_at' => 'nullable'
+        'deleted_at' => 'nullable',
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function kelurahans()
+    public function kecamatan()
     {
-        return $this->hasOne(\App\Models\Kelurahan::class, 'kelurahan_id');
+        return $this->belongsTo(\App\Models\Kecamatan::class, 'kecamatan_id');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function kecamatans()
+    public function kelurahan()
     {
-        return $this->hasOne(\App\Models\Kecamatan::class, 'kecamatan_id');
+        return $this->belongsTo(\App\Models\Kelurahan::class, 'kelurahan_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
     public function users()
     {
         return $this->belongsTo(\App\Models\User::class, 'users_id');

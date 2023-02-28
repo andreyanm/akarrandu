@@ -26,3 +26,6 @@ Route::resource('kecamatans', App\Http\Controllers\KecamatanController::class);
 
 
 Route::resource('kelurahans', App\Http\Controllers\KelurahanController::class);
+
+
+Route::resource('wargas', App\Http\Controllers\WargaController::class);
