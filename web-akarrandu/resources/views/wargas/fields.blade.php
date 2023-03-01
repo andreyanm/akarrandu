@@ -10,6 +10,12 @@
     {!! Form::text('nik', null, ['class' => 'form-control','maxlength' => 16,'maxlength' => 16]) !!}
 </div>
 
+<!-- Jenis Kelamin Field -->
+<div class="form-group col-sm-12 col-lg-12">
+    {!! Form::label('jenis_kelamin', 'Jenis Kelamin:') !!}
+    {!! Form::select('jenis_kelamin',['Laki laki' => 'Laki laki','Perempuan'=> 'Perempuan']) !!}
+</div>
+
 <!-- Alamat Field -->
 <div class="form-group col-sm-12 col-lg-12">
     {!! Form::label('alamat', 'Alamat:') !!}

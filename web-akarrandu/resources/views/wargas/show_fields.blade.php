@@ -9,7 +9,10 @@
     {!! Form::label('nik', 'Nik:') !!}
     <p>{{ $warga->nik }}</p>
 </div>
-
+<div class="col-sm-12">
+    {!! Form::label('jenis_kelamin', 'Jenis Kelamin:') !!}
+    <p>{{ $warga->jenis_kelamin }}</p>
+</div>
 <!-- Alamat Field -->
 <div class="col-sm-12">
     {!! Form::label('alamat', 'Alamat:') !!}

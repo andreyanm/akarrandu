@@ -5,6 +5,7 @@
         <tr>
         <th>Nama</th>
         <th>Nik</th>
+        <th>Jenis Kelamin</th>
         <th>Alamat</th>
         <th>Rw</th>
         <th>Rt</th>
@@ -18,8 +19,9 @@
         <tbody>
         @foreach($wargas as $warga)
             <tr>
-                <td>{{ $warga->nama }}</td>
+            <td>{{ $warga->nama }}</td>
             <td>{{ $warga->nik }}</td>
+            <td>{{ $warga->jenis_kelamin }}</td>
             <td>{{ $warga->alamat }}</td>
             <td>{{ $warga->rw }}</td>
             <td>{{ $warga->rt }}</td>

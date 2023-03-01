@@ -67,7 +67,7 @@
                            placeholder="NIK">
                     <div class="input-group-append">
                         <div class="input-group-text">
-                            <span class="fas fa-user"></span>
+                            <span class="fas fa-address-card"></span>
                         </div>
                     </div>
                     @error('nik')
@@ -99,7 +99,7 @@
                            placeholder="Alamat">
                     <div class="input-group-append">
                         <div class="input-group-text">
-                            <span class="fas fa-user"></span>
+                            <span class="fas fa-map-marked-alt"></span>
                         </div>
                     </div>
                     @error('alamat')
@@ -114,10 +114,25 @@
                            placeholder="No Handphone">
                     <div class="input-group-append">
                         <div class="input-group-text">
-                            <span class="fas fa-user"></span>
+                            <span class="fas fa-phone"></span>
                         </div>
                     </div>
                     @error('nohp')
+                    <span class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="input-group mb-3">
+                <select name="role" id="" class="form-control">
+                    <option value="">Pilih Role</option>
+                    <option value="0">Admin</option>
+                    <option value="1">Petugas</option>
+                </select>
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-user-shield"></span>
+                        </div>
+                    </div>
+                    @error('jenis_kelamin')
                     <span class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>

@@ -43,6 +43,7 @@ class Warga extends Model
     public $fillable = [
         'nama',
         'nik',
+        'jenis_kelamin',
         'alamat',
         'rw',
         'rt',
@@ -61,6 +62,7 @@ class Warga extends Model
         'id' => 'integer',
         'nama' => 'string',
         'nik' => 'string',
+        'jenis_kelamin' => 'string',
         'alamat' => 'string',
         'rw' => 'string',
         'rt' => 'string',
@@ -78,6 +80,7 @@ class Warga extends Model
     public static $rules = [
         'nama' => 'required|string|max:255',
         'nik' => 'required|string|max:16',
+        'jenis_kelamin' => 'required|string',
         'alamat' => 'required|string',
         'rw' => 'required|string|max:255',
         'rt' => 'required|string|max:255',

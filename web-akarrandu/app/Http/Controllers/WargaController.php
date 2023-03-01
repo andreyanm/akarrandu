@@ -34,10 +34,20 @@ class WargaController extends AppBaseController
      */
     public function index(Request $request)
     {
+        $getUser = Auth::user()->id;
+        $getRoles = Auth::user()->role;
         if($request->has('search')){
+            if($getRoles == 1){   
+            $wargas = Warga::where('users_id', $getUser)->where('nama','LIKE','%'.$request->search.'%')->paginate(5);
+            }else{
             $wargas = Warga::where('nama','LIKE','%'.$request->search.'%')->paginate(5);
+            }
         }else{
-            $wargas = Warga::orderBy('nama','ASC')->paginate(5);
+            if($getRoles == 1){
+                $wargas = Warga::where('users_id', $getUser)->orderBy('nama','ASC')->paginate(5);
+            }else{
+                $wargas = Warga::orderBy('nama','ASC')->paginate(5);
+            }
         }
         return view('wargas.index')
             ->with('wargas', $wargas);
@@ -70,6 +80,7 @@ class WargaController extends AppBaseController
         $validator = Validator::make($request->all(),[
             'nama' => 'required|string|max:255',
             'nik' => 'required',
+            'jenis_kelamin' => 'required',
             'nohp' => 'required',
             'alamat' => 'required',
             'kecamatan_id' => 'required',
@@ -83,6 +94,7 @@ class WargaController extends AppBaseController
         $warga = new Warga();
         $warga->nama = $request->nama;
         $warga->nik = $request->nik;
+        $warga->jenis_kelamin = $request->jenis_kelamin;
         $warga->nohp = $request->nohp;
         $warga->alamat = $request->alamat;
         $warga->kecamatan_id = $request->kecamatan_id;
@@ -127,6 +139,8 @@ class WargaController extends AppBaseController
     public function edit($id)
     {
         $warga = $this->wargaRepository->find($id);
+        $kecamatans = Kecamatan::pluck('nama_kecamatan','id');
+        $kelurahans = Kelurahan::pluck('nama_kelurahan','id');
 
         if (empty($warga)) {
             Flash::error('Warga not found');
@@ -134,7 +148,10 @@ class WargaController extends AppBaseController
             return redirect(route('wargas.index'));
         }
 
-        return view('wargas.edit')->with('warga', $warga);
+        return view('wargas.edit',compact(
+            'kecamatans',
+            'kelurahans'
+        ))->with('warga', $warga);
     }
 
     /**

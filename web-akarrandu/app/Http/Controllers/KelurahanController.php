@@ -102,14 +102,16 @@ class KelurahanController extends AppBaseController
     public function edit($id)
     {
         $kelurahan = $this->kelurahanRepository->find($id);
-
+        $kecamatans = Kecamatan::pluck('nama_kecamatan','id');
         if (empty($kelurahan)) {
             Flash::error('Kelurahan not found');
 
             return redirect(route('kelurahans.index'));
         }
 
-        return view('kelurahans.edit')->with('kelurahan', $kelurahan);
+        return view('kelurahans.edit',compact(
+            'kecamatans'
+        ))->with('kelurahan', $kelurahan);
     }
 
     /**

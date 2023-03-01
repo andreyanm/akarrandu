@@ -16,6 +16,7 @@ class APIWargaController extends Controller
     {
         $getUser = Auth::user()->id;
         $warga = Warga::where('users_id', $getUser)->get();
+        $warga->load('kecamatan','kelurahan');
         return response()->json([
             'success' => true,
             'data' => $warga,
@@ -28,6 +29,7 @@ class APIWargaController extends Controller
         $validator = Validator::make($request->all(),[
             'nama' => 'required|string|max:255',
             'nik' => 'required',
+            'jenis_kelamin' => 'required',
             'nohp' => 'required',
             'alamat' => 'required',
             'kecamatan_id' => 'required',
@@ -41,6 +43,7 @@ class APIWargaController extends Controller
             $warga = new Warga();
             $warga->nama = $request->nama;
             $warga->nik = $request->nik;
+            $warga->jenis_kelamin = $request->jenis_kelamin;
             $warga->nohp = $request->nohp;
             $warga->alamat = $request->alamat;
             $warga->kecamatan_id = $request->kecamatan_id;
@@ -62,6 +65,7 @@ class APIWargaController extends Controller
         $validator = Validator::make($request->all(),[
             'nama' => 'required|string|max:255',
             'nik' => 'required',
+            'jenis_kelamin' => 'required',
             'nohp' => 'required',
             'alamat' => 'required',
             'kecamatan_id' => 'required',
@@ -75,6 +79,7 @@ class APIWargaController extends Controller
             $warga = Warga::find($id);
             $warga->nama = $request->nama;
             $warga->nik = $request->nik;
+            $warga->jenis_kelamin = $request->jenis_kelamin;
             $warga->nohp = $request->nohp;
             $warga->alamat = $request->alamat;
             $warga->kecamatan_id = $request->kecamatan_id;
