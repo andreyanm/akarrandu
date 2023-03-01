@@ -5,13 +5,20 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Kecamatans</h1>
+                    <h1>Kecamatan</h1>
                 </div>
                 <div class="col-sm-6">
                     <a class="btn btn-primary float-right"
                        href="{{ route('kecamatans.create') }}">
                         Add New
                     </a>
+                </div>
+            </div>
+            <div class="row mb-2 pl-2"> 
+                <div class="co-sm-6">
+                    <form action="/kecamatans" method="GET">
+                    <input type="search" name="search" class="form-control" placeholder="Search">  
+                    </form>                 
                 </div>
             </div>
         </div>

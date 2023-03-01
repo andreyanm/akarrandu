@@ -33,5 +33,7 @@ Route::group(['middleware' => 'jwt.auth'],function(){
     //WARGA
     Route::get('get_warga', [APIWargaController::class, 'index']);
     Route::post('warga', [APIWargaController::class, 'store']);
+    Route::post('warga/{id}/edit', [APIWargaController::class, 'update']);
+    Route::post('warga/{id}/delete', [APIWargaController::class,'delete']);
     
 });

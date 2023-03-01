@@ -34,8 +34,11 @@ class WargaController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $getUser = Auth::user()->id;
-        $wargas = Warga::where('users_id', $getUser)->get();
+        if($request->has('search')){
+            $wargas = Warga::where('nama','LIKE','%'.$request->search.'%')->paginate(5);
+        }else{
+            $wargas = Warga::orderBy('nama','ASC')->paginate(5);
+        }
         return view('wargas.index')
             ->with('wargas', $wargas);
     }

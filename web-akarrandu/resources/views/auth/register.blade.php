@@ -90,7 +90,37 @@
                     <span class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
-
+                
+                <div class="input-group mb-3">
+                    <input type="text"
+                           name="alamat"
+                           class="form-control @error('alamat') is-invalid @enderror"
+                           value="{{ old('alamat') }}"
+                           placeholder="Alamat">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-user"></span>
+                        </div>
+                    </div>
+                    @error('alamat')
+                    <span class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="input-group mb-3">
+                    <input type="text"
+                           name="nohp"
+                           class="form-control @error('nohp') is-invalid @enderror"
+                           value="{{ old('nohp') }}"
+                           placeholder="No Handphone">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-user"></span>
+                        </div>
+                    </div>
+                    @error('nohp')
+                    <span class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
                 <div class="input-group mb-3">
                     <input type="password"
                            name="password"

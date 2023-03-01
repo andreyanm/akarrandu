@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateKecamatanRequest;
 use App\Repositories\KecamatanRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use App\Models\Kecamatan;
 use Flash;
 use Response;
 
@@ -29,8 +30,11 @@ class KecamatanController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $kecamatans = $this->kecamatanRepository->all();
-
+        if($request->has('search')){
+            $kecamatans = Kecamatan::where('nama_kecamatan','LIKE','%'.$request->search.'%')->paginate(5);
+        }else{
+            $kecamatans = Kecamatan::orderBy('nama_kecamatan','ASC')->paginate(5);
+        }
         return view('kecamatans.index')
             ->with('kecamatans', $kecamatans);
     }

@@ -8,6 +8,7 @@ use App\Repositories\KelurahanRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use App\Models\Kecamatan;
+use App\Models\Kelurahan;
 use Flash;
 use Response;
 
@@ -30,7 +31,11 @@ class KelurahanController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $kelurahans = $this->kelurahanRepository->all();
+        if($request->has('search')){
+            $kelurahans = Kelurahan::where('nama_kelurahan','LIKE','%'.$request->search.'%')->paginate(5);
+        }else{
+            $kelurahans = Kelurahan::orderBy('nama_kelurahan','ASC')->paginate(5);
+        }
 
         return view('kelurahans.index')
             ->with('kelurahans', $kelurahans);

@@ -1,16 +1,17 @@
 <div class="table-responsive">
+
     <table class="table" id="wargas-table">
         <thead>
         <tr>
-            <th>Nama</th>
+        <th>Nama</th>
         <th>Nik</th>
         <th>Alamat</th>
         <th>Rw</th>
         <th>Rt</th>
         <th>Nohp</th>
-        <th>Kecamatan Id</th>
-        <th>Kelurahan Id</th>
-        <th>Users Id</th>
+        <th>Kecamatan</th>
+        <th>Kelurahan</th>
+        <th>Users</th>
             <th colspan="3">Action</th>
         </tr>
         </thead>
@@ -45,4 +46,5 @@
         @endforeach
         </tbody>
     </table>
+    {{ $wargas->links() }}  
 </div>
